@@ -1,0 +1,30 @@
+services:
+  app:
+    image: "autocompany"
+    ports:
+      - 127.0.0.1:80:80
+    working_dir: /app
+    volumes:
+      - ./:/app
+      - ./static:/static
+    environment:
+      POSTGRES_HOST: labela
+      POSTGRES_USER: labela
+      POSTGRES_PASSWORD: labela
+      POSTGRES_DB: labela
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_ROOT_PASSWORD: labela
+      POSTGRES_DATABASE: labela
+      POSTGRES_HOST: labela
+      POSTGRES_USER: labela
+      POSTGRES_PASSWORD: labela
+      POSTGRES_DB: labela
